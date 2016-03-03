@@ -41,7 +41,8 @@ ENV JBIGLIB="/usr/lib/x86_64-linux-gnu/"
 
 RUN cd /usr/local/ && git clone https://github.com/USGS-EROS/espa-product-formatter.git espa-common
 RUN mkdir -p /usr/local/espa-tools
-ENV PREFIX="/usr/local/espa-tools/" #export PREFIX="path_to_directory_for_format_converter_build_data" probably "/usr/local/espa-common/src/raw_binary/format_conversion_libs"
+ENV PREFIX="/usr/local/espa-tools/"
+#export PREFIX="path_to_directory_for_format_converter_build_data" probably "/usr/local/espa-common/src/raw_binary/format_conversion_libs"
 
 RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl http://espa.cr.usgs.gov/downloads/auxiliaries/land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
 ENV ESPA_LAND_MASS_POLYGON="$PREFIX/static_data/land_no_buf.ply"
@@ -59,7 +60,10 @@ RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-ERO
 ENV LEDAPS_AUX_DIR="/opt/ledaps"
 ADD Makefile /usr/local/espa-surface/ledaps/ledapsSrc/src/lndsr/
 RUN cd /usr/local/espa-surface/ledaps/ledapsSrc/src && make && make install
-
+ENV BIN="/usr/local/espa-tools/bin"
+RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/do_ledaps.csh $BIN
+RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/do_ledaps.py $BIN
+RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/ncdump $BIN
 ###
 #ENV BIN="/usr/local/bin/ledapsSrc/bin"
 #RUN svn checkout http://ledaps.googlecode.com/svn/releases/version_2.2.1/ /usr/local/bin

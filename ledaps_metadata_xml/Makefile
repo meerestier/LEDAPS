@@ -50,7 +50,6 @@ F_OBJ = $(F_SRC:.f=.o)
 ALL_OBJ = $(C_OBJ) $(F_OBJ)
 
 # Define include paths
-
 INCDIR  = -I. -I$(ESPAINC) -I$(XML2INC)
 HDF_INCDIR = -I$(JPEGINC) -I$(HDFINC) -I$(HDFEOS_GCTPINC)
 NCFLAGS = $(EXTRA) $(INCDIR) $(HDF_INCDIR)
@@ -74,26 +73,26 @@ EXE = lndsr
 all: $(EXE)
 
 $(EXE): $(ALL_OBJ)
-        $(CC) $(EXTRA) -o $(EXE) $(ALL_OBJ) $(LOADLIB)
+	$(CC) $(EXTRA) -o $(EXE) $(ALL_OBJ) $(LOADLIB)
 
 #-----------------------------------------------------------------------------
 install:
-        install -d $(link_path)
-        install -d $(ledaps_bin_install_path)
-        install -m 755 $(EXE) $(ledaps_bin_install_path)
-        ln -sf $(ledaps_link_source_path)/$(EXE) $(link_path)/$(EXE)
+	install -d $(link_path)
+	install -d $(ledaps_bin_install_path)
+	install -m 755 $(EXE) $(ledaps_bin_install_path)
+	ln -sf $(ledaps_link_source_path)/$(EXE) $(link_path)/$(EXE)
 
 #-----------------------------------------------------------------------------
 clean:
-        rm -f *.o $(EXE)
+	rm -f *.o $(EXE)
 
 #-----------------------------------------------------------------------------
 $(C_OBJ): $(C_SRC) $(C_INC)
 
 .c.o:
-        $(CC) $(NCFLAGS) -c $< -o $@
+	$(CC) $(NCFLAGS) -c $< -o $@
 
 $(F_OBJ): $(F_SRC)
 
 .f.o:
-        $(FC) $(NCFLAGS) -c $< -o $@
+	$(FC) $(NCFLAGS) -c $< -o $@
