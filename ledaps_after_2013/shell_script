@@ -10,8 +10,6 @@ else
 	mkdir $dir
 	cp $2 $dir
 	year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
-	#This regexp for 2015 changes in a tar.bz: LE70210492012015ASN00.tar.bz check this
-	#year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
 	cp $1/CMGDEM.hdf $dir
 	mkdir $dir/EP_TOMS && cp -r $1/EP_TOMS/ozone_$year $dir/EP_TOMS
 	mkdir $dir/REANALYSIS && cp -r $1/REANALYSIS/RE_$year $dir/REANALYSIS
