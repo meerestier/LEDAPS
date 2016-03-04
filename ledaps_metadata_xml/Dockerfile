@@ -1,3 +1,7 @@
+#docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <path to local directory with data>:/data -v <path to directory for results>:/results name_image <path to ancilliary data in docker> <path to source data in docker/L*.*.tar.bz> <path to destiny results in docker>
+  
+#Example:
+#docker run -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210492014004EDC00.tar.bz /results
 FROM ubuntu:14.04
 MAINTAINER Erick Palacios <epalacios@conabio.gob.mx>
 RUN apt-get update -y && \
