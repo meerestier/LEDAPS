@@ -14,8 +14,8 @@ else
 	mkdir $dir/EP_TOMS && cp -r $1/EP_TOMS/ozone_$year $dir/EP_TOMS
 	mkdir $dir/REANALYSIS && cp -r $1/REANALYSIS/RE_$year $dir/REANALYSIS
 	cd $dir && tar xvf $name 
-	metadata=$(ls $dir|grep *_MTL.txt)
-	cd $dir && /usr/local/bin/ledapsSrc/bin/do_ledaps.csh $metadata
+	metadata=$(ls $dir|grep -E ^L[A-Z][5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+	cd $dir && $BIN/do_ledaps.csh $metadata
 	rm $dir/$name
 	rm -r $dir/CMGDEM.hdf
 	rm -r $dir/EP_TOMS/
