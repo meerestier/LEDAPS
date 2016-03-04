@@ -46,7 +46,7 @@ ENV JBIGLIB="/usr/lib/x86_64-linux-gnu/"
 RUN cd /usr/local/ && git clone https://github.com/USGS-EROS/espa-product-formatter.git espa-common
 RUN mkdir -p /usr/local/espa-tools
 ENV PREFIX="/usr/local/espa-tools/"
-#export PREFIX="path_to_directory_for_format_converter_build_data" probably "/usr/local/espa-common/src/raw_binary/format_conversion_libs"
+
 
 RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl http://espa.cr.usgs.gov/downloads/auxiliaries/land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
 ENV ESPA_LAND_MASS_POLYGON="$PREFIX/static_data/land_no_buf.ply"
@@ -76,18 +76,4 @@ ADD shell_script /opt/shell_script
 WORKDIR /results
 
 ENTRYPOINT ["/opt/shell_script"]
-
-###
-#ENV BIN="/usr/local/bin/ledapsSrc/bin"
-#RUN svn checkout http://ledaps.googlecode.com/svn/releases/version_2.2.1/ /usr/local/bin
-#RUN cd /usr/local/bin/ledapsSrc/src && make 
-#RUN cd /usr/local/bin/ledapsSrc/src && make install && ldconfig
-#RUN cd $BIN && chmod gou+x lndsrbm.ksh
-
-
-
-
-
-
-
 
