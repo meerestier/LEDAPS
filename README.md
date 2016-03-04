@@ -1,5 +1,5 @@
 # LEDAPS
-docker commands to preprocess landsat data
+docker commands to preprocess landsat data. For years after 2013 go to directory ledaps_after_2013
 ##Commands
 ```
 $docker build -t ledaps/ledaps:v1 .
