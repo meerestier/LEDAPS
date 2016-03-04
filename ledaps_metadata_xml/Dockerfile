@@ -64,6 +64,15 @@ ENV BIN="/usr/local/espa-tools/bin"
 RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/do_ledaps.csh $BIN
 RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/do_ledaps.py $BIN
 RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/ncdump $BIN
+
+VOLUME ["/opt/ledaps", "/data", "/results"]
+
+ADD shell_script /opt/shell_script
+
+WORKDIR /results
+
+ENTRYPOINT ["/opt/shell_script"]
+
 ###
 #ENV BIN="/usr/local/bin/ledapsSrc/bin"
 #RUN svn checkout http://ledaps.googlecode.com/svn/releases/version_2.2.1/ /usr/local/bin
