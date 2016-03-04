@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-
+MAINTAINER Erick Palacios <epalacios@conabio.gob.mx>
 RUN apt-get update -y && \
 	apt-get install -y \
 	zlib1g zlib1g-dev libtiff5 libtiff5-dev \
