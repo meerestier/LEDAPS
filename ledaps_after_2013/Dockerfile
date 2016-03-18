@@ -2,8 +2,10 @@
   
 #Example:
 #docker run -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210492014004EDC00.tar.bz /results
-FROM ubuntu:14.04
+#FROM ubuntu:14.04
+FROM geodata/gdal:1.11.2
 MAINTAINER Erick Palacios <epalacios@conabio.gob.mx>
+USER root
 RUN apt-get update -y && \
 	apt-get install -y \
 	zlib1g zlib1g-dev libtiff5 libtiff5-dev \
@@ -51,11 +53,10 @@ ENV PREFIX="/usr/local/espa-tools/"
 RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl http://espa.cr.usgs.gov/downloads/auxiliaries/land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
 ENV ESPA_LAND_MASS_POLYGON="$PREFIX/static_data/land_no_buf.ply"
 
-RUN mkdir -p /usr/local/espa-tools/raw_binary
-ENV ESPAINC="/usr/local/espa-tools/raw_binary/include"
-ENV ESPALIB="/usr/local/espa-tools/raw_binary/lib"
-
-RUN cd /usr/local/espa-common/src/raw_binary && make install && ldconfig
+RUN mkdir -p /usr/local/espa-tools/
+ENV ESPAINC="/usr/local/espa-tools/include"
+ENV ESPALIB="/usr/local/espa-tools/lib"
+RUN cd /usr/local/espa-common/ && make install && ldconfig
 
 
 #Surface reflectances...
