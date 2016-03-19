@@ -1,7 +1,7 @@
 # LEDAPS
 docker commands to preprocess landsat data, tm and etm+ 
 
-For images with metadata with "resampling option: CC" go to directory ledaps_cc and use the ancilliary data: 
+For images with metadata "resampling option: CC" go to directory ledaps_cc and use the ancilliary data: 
 http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 
 ##Commands
