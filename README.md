@@ -1,5 +1,9 @@
 # LEDAPS
-docker commands to preprocess landsat data, tm and etm+. For years after 2013 go to directory ledaps_after_2013
+docker commands to preprocess landsat data, tm and etm+ 
+
+For years after 2013 go to directory ledaps_after_2013 and use the ancilliary data: 
+http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
+
 ##Commands
 ```
 $docker build -t ledaps/ledaps:v1 .
