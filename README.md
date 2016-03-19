@@ -14,7 +14,7 @@ $docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <pat
 $docker run -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
 ```
 
-For LEDAPS based in https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/ and images after year 2012 with metadata "resampling option: CC" and ancilliary data from: 
+For LEDAPS based in https://github.com/USGS-EROS/espa-surface-reflectance.git and images after year 2012 with metadata "resampling option: CC" and ancilliary data from: 
 http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz go to directory ledaps_cc and use similar commands.
 
 On ledaps_cc there are scripts for updating auxilliary data such as updatetoms.py and updatencep.py
