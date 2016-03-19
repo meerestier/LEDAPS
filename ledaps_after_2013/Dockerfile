@@ -70,6 +70,16 @@ RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/do_ledaps.csh $BIN
 RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/do_ledaps.py $BIN
 RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/ncdump $BIN
 
+#Auxilliary files...
+
+ENV NCDF4INC="/usr/include/"
+
+ENV NCDF4LIB="/usr/lib"
+
+RUN cp -r /usr/include/hdf/* /usr/local/espa-surface/ledaps/ledapsAncSrc
+
+RUN cd /usr/local/espa-surface/ledaps/ledapsAncSrc && make && make install
+
 VOLUME ["/opt/ledaps", "/data", "/results"]
 
 ADD shell_script /opt/shell_script
