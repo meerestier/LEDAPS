@@ -33,6 +33,6 @@ $docker run --rm -v <path to directory to update ancilliary data>:/data --entryp
 #exit
 
 ```
-In "<path to directory to update ancilliary data>" will be the results
+In "path to directory to update ancilliary data" will be the results
 
 
