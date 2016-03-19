@@ -30,4 +30,9 @@ $docker run --rm -v <path to directory to update ancilliary data>:/data --entryp
 
 #cp -r /root/EP_TOMS /data
 
+#exit
+
 ```
+In <path to directory to update ancilliary data> will be the results
+
+
