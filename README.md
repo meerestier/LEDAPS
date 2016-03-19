@@ -22,7 +22,7 @@ On ledaps_cc there are scripts for updating auxilliary data such as updatetoms.p
 An example using updatetoms.py:
 
 ```
-$docker run --rm -v <path to directory to update ancilliary data>:/data --entrypoint=/bin/bash -it name_image
+$docker run --rm -v <path to directory to update ancilliary data>:/data --entrypoint=/bin/bash -it name_docker_image
 
 #export PATH=$BIN:$PATH
 
