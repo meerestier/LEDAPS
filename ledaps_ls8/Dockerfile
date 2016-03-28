@@ -61,12 +61,18 @@ RUN cd /usr/local/espa-common/ && make install && ldconfig
 #Surface reflectances...
 
 RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/
-ENV LEDAPS_AUX_DIR="/opt/ledaps"
+#ENV LEDAPS_AUX_DIR="/opt/ledaps"
+ENV L8_AUX_DIR="/opt/ledaps"
 #ADD Makefile /usr/local/espa-surface/ledaps/ledapsSrc/src/lndsr/
 RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/c_version/src && make && make install
 ENV BIN="/usr/local/espa-tools/bin"
 
 RUN cp /usr/local/espa-surface/not-validated-prototype-l8_sr/c_version/scripts/do_l8_sr.py $BIN
+
+RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/landsat_aux/src && make && make install
+RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/landsat_aux/scripts && make && make install
+
+ENV PATH="/usr/local/espa-tools/espa-surface-reflectance/l8_sr/bin/:$PATH"
 
 #Auxilliary files...
 
@@ -80,9 +86,9 @@ RUN cp /usr/local/espa-surface/not-validated-prototype-l8_sr/c_version/scripts/d
 
 VOLUME ["/opt/ledaps", "/data", "/results"]
 
-#ADD shell_script /opt/shell_script
+ADD shell_script /opt/shell_script
 
-#WORKDIR /results
+WORKDIR /results
 
-#ENTRYPOINT ["/opt/shell_script"]
+ENTRYPOINT ["/opt/shell_script"]
 
