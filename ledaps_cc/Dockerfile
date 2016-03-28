@@ -53,7 +53,6 @@ ENV PREFIX="/usr/local/espa-tools/"
 RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl http://espa.cr.usgs.gov/downloads/auxiliaries/land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
 ENV ESPA_LAND_MASS_POLYGON="$PREFIX/static_data/land_no_buf.ply"
 
-RUN mkdir -p /usr/local/espa-tools/
 ENV ESPAINC="/usr/local/espa-tools/include"
 ENV ESPALIB="/usr/local/espa-tools/lib"
 RUN cd /usr/local/espa-common/ && make install && ldconfig
