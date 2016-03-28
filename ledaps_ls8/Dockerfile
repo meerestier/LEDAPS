@@ -62,28 +62,27 @@ RUN cd /usr/local/espa-common/ && make install && ldconfig
 
 RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/
 ENV LEDAPS_AUX_DIR="/opt/ledaps"
-ADD Makefile /usr/local/espa-surface/ledaps/ledapsSrc/src/lndsr/
-RUN cd /usr/local/espa-surface/ledaps/ledapsSrc/src && make && make install
+#ADD Makefile /usr/local/espa-surface/ledaps/ledapsSrc/src/lndsr/
+RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/c_version/src && make && make install
 ENV BIN="/usr/local/espa-tools/bin"
-RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/do_ledaps.csh $BIN
-RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/do_ledaps.py $BIN
-RUN cp /usr/local/espa-surface/ledaps/ledapsSrc/scripts/ncdump $BIN
+
+RUN cp /usr/local/espa-surface/not-validated-prototype-l8_sr/c_version/scripts/do_l8_sr.py $BIN
 
 #Auxilliary files...
 
-ENV NCDF4INC="/usr/include/"
+#ENV NCDF4INC="/usr/include/"
 
-ENV NCDF4LIB="/usr/lib"
+#ENV NCDF4LIB="/usr/lib"
 
-RUN cp -r /usr/include/hdf/* /usr/local/espa-surface/ledaps/ledapsAncSrc
+#RUN cp -r /usr/include/hdf/* /usr/local/espa-surface/ledaps/ledapsAncSrc
 
-RUN cd /usr/local/espa-surface/ledaps/ledapsAncSrc && make && make install
+#RUN cd /usr/local/espa-surface/ledaps/ledapsAncSrc && make && make install
 
 VOLUME ["/opt/ledaps", "/data", "/results"]
 
-ADD shell_script /opt/shell_script
+#ADD shell_script /opt/shell_script
 
-WORKDIR /results
+#WORKDIR /results
 
-ENTRYPOINT ["/opt/shell_script"]
+#ENTRYPOINT ["/opt/shell_script"]
 
