@@ -1,7 +1,8 @@
 # LEDAPS
 docker commands to preprocess landsat data, tm and etm+ that are based in ancilliary data from 1980 to 2013
 
-The dockerfile used in this branch use an old release: http://ledaps.googlecode.com/svn/releases/version_1.3.0 and an old ancilliary data
+The dockerfile used in this branch use an old release: http://ledaps.googlecode.com/svn/releases/version_1.3.0 and an old ancilliary data,
+for a new approach go to folder ledaps_cc
 
 ##Commands
 ```
