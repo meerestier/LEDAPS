@@ -11,7 +11,7 @@ $docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <pat
 
 #Example:
 
-$docker run -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
+$docker run --rm -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210482012015ASN00.tar.bz /results
 ```
 
 The directory *path to directory for results* will have the results
