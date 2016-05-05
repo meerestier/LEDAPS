@@ -14,6 +14,8 @@ $docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <pat
 $docker run -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
 ```
 
+The directory *path to directory for results* will have the results
+
 To update the auxilliary data, we can use the updatetoms.py and updatencep.py
 
 An example using updatetoms.py:
