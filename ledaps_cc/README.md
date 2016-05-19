@@ -13,7 +13,7 @@ $docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <pat
 
 #Example:
 
-$docker run --rm -v $(pwd):/opt/ledaps -v /Users/data:/data -v $(pwd):/results name_image /opt/ledaps /data/LE70210482012015ASN00 /results
+$docker run --rm -v /Users/auxilliary_data:/opt/ledaps -v /Users/data:/data -v $(pwd):/results name_image /opt/ledaps /data/LE70210482012015ASN00 /results
 ```
 
 The directory *path to directory for results* will have the results
