@@ -7,11 +7,11 @@ according to https://github.com/USGS-EROS/espa-surface-reflectance.git and image
 ```
 $docker build -t ledaps/ledaps:v1 .
 
-$docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <path to local directory with data>:/data -v <path to directory for results>:/results ledaps/ledaps:v1 <path to ancilliary data in docker> <path to source data in docker/L*.*.tar.bz> <path to destiny results in docker>
+$docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <path to local directory with data>:/data -v <path to directory for results>:/results ledaps/ledaps:v1 <path to ancilliary data in docker> <path to source data in docker/L*> <path to destiny results in docker>
 
 #Example:
 
-$docker run --rm -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210482012015ASN00.tar.bz /results
+$docker run --rm -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210482012015ASN00 /results
 ```
 
 The directory *path to directory for results* will have the results
