@@ -81,9 +81,9 @@ RUN cd /usr/local/espa-surface/ledaps/ledapsAncSrc && make && make install
 
 VOLUME ["/opt/ledaps", "/data", "/results"]
 
-ADD shell_script /opt/shell_script
+#ADD shell_script /opt/shell_script
 
 WORKDIR /results
 
-ENTRYPOINT ["/opt/shell_script"]
+#ENTRYPOINT ["/opt/shell_script"]
 

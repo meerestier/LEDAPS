@@ -73,6 +73,9 @@ RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/landsat_aux/src && 
 RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/landsat_aux/scripts && make && make install
 
 ENV PATH="/usr/local/espa-tools/espa-surface-reflectance/l8_sr/bin/:$PATH"
+#Revisar si es también:
+
+ENV PATH="/usr/local/espa-tools/bin/"
 
 #Auxilliary files...
 
