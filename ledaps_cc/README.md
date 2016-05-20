@@ -3,7 +3,7 @@ docker commands to preprocess landsat data, tm and etm+ that are based in ancill
 
 according to https://github.com/USGS-EROS/espa-surface-reflectance.git and images after year 2012 with metadata "resampling option: CC" 
 
-Use the shell_script on this repository where you execute the following command
+Use the shell_script on this repository where you execute the *docker run command*
 
 ##Commands
 ```
@@ -13,7 +13,7 @@ $docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <pat
 
 #Example:
 
-$docker run --rm -v /Users/auxilliary_data:/opt/ledaps -v /Users/data:/data -v $(pwd):/results name_image /opt/ledaps /data/LE70210482012015ASN00 /results
+$docker run --rm -v /Users/auxilliary_data:/opt/ledaps -v /Users/data:/data -v $(pwd):/results name_image /data/LE70210482012015ASN00
 ```
 
 The directory *path to directory for results* will have the results
