@@ -11,11 +11,14 @@ $docker build -t ledaps/ledaps:v1 .
 
 #Execute the following command in the directory where you have the shell_script
 
-$docker run --rm -v <path to directory with ancillary data>:/opt/ledaps -v <path to local directory with landsat data>:/data -v <path to directory for results>:/results ledaps/ledaps:v1 /results/shell_script /data/folder_landsat_data
+$docker run --rm -v <path to directory with ancillary data>:/opt/ledaps \
+-v <path to local directory with landsat data>:/data -v <path to directory for results>:/results \
+ledaps/ledaps:v1 /results/shell_script /data/folder_landsat_data
 
 #Example:
 
-$docker run --rm -v /Users/auxilliary_data:/opt/ledaps -v /Users/data:/data -v $(pwd):/results name_image /results/shell_script /data/LE70210492015007EDC00
+$docker run --rm -v /Users/auxilliary_data:/opt/ledaps -v /Users/data:/data \
+-v $(pwd):/results name_image /results/shell_script /data/LE70210492015007EDC00
 ```
 
 The directory where you execute the command will have the results
@@ -25,7 +28,7 @@ To update the auxilliary data, we can use the updatetoms.py and updatencep.py
 An example using updatetoms.py:
 
 ```
-$docker run --rm -v <path to directory to update ancilliary data>:/data --entrypoint=/bin/bash -it name_docker_image
+$docker run --rm -v <path to directory to update ancilliary data>:/data -it name_docker_image /bin/bash
 
 #export PATH=$BIN:$PATH
 
