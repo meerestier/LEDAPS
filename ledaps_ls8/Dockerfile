@@ -72,8 +72,7 @@ RUN cp /usr/local/espa-surface/not-validated-prototype-l8_sr/c_version/scripts/d
 RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/landsat_aux/src && make && make install
 RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/landsat_aux/scripts && make && make install
 
-ENV PATH="/usr/local/espa-tools/espa-surface-reflectance/l8_sr/bin/:$PATH"
-#Revisar si es también:
+#ENV PATH="/usr/local/espa-tools/espa-surface-reflectance/l8_sr/bin/:$PATH"
 
 ENV PATH="/usr/local/espa-tools/bin/"
 
@@ -89,9 +88,9 @@ ENV PATH="/usr/local/espa-tools/bin/"
 
 VOLUME ["/opt/ledaps", "/data", "/results"]
 
-ADD shell_script /opt/shell_script
+#ADD shell_script /opt/shell_script
 
-WORKDIR /results
+#WORKDIR /results
 
-ENTRYPOINT ["/opt/shell_script"]
+#ENTRYPOINT ["/opt/shell_script"]
 
