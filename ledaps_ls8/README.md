@@ -20,7 +20,7 @@ $docker build -t ledaps/ledaps_ls8:v1 .
 
 ```
 
-you can combine the 4 files in a *hdf_fused* file. For example, if you have in the path /auxiliary_files the auxiliary files then:
+you can combine the 4 files in a *hdf_fused* file. For example, if you have in the path "/auxiliary_files" the auxiliary files then:
 
 ```
 $docker run --rm -v /auxiliary_files:/opt/ledaps ledaps/ledaps_ls8:v1 combine_l8_aux_data \
