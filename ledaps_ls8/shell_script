@@ -1,15 +1,18 @@
 #!/bin/bash
 #This shell_script must be executable, if not do a chmod
-name=$(basename $2)
-basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
-dir=$3/$basename
-mkdir $dir
-cp $2 $dir
-cd $dir && tar xvf $name
+destiny=/results
+name=$(basename $1)
+basename=$(echo $name|sed -n 's/\(L*.*\)/\1/;p')
+dir=$destiny/$basename
+cd $dir
 metadata=$(ls $dir|grep -E ^L[A-Z]?[5-8][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
-#file_fused=
+echo $metadataxml
 $BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
 $BIN/create_land_water_mask --xml=$metadataxml
-#$BIN/l8_sr --xml=$metadataxml --aux=$file_fused --verbose --write_toa
+#$BIN/l8_sr --xml=LC80210482013105LGN01_MTL.xml --aux=L8ANC2013105.hdf_fused --verbose --write_toa
 $BIN/do_l8_sr.py --xml=$metadataxml
+#cd $dir && $BIN/do_ledaps.csh $metadataxml
+#cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif
+cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
+#rm $dir/$name
