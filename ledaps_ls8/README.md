@@ -1,5 +1,5 @@
 # LEDAPS
-docker commands to preprocess landsat 8 data and obtain surface reflectances
+docker commands to preprocess landsat 8 oli-tirs data and obtain surface reflectances
 
 We need to download the auxiliary files described in: https://github.com/USGS-EROS/espa-surface-reflectance/tree/master/not-validated-prototype-l8_sr
 
