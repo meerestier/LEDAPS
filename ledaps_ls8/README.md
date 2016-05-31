@@ -36,5 +36,5 @@ $docker run --rm -v /auxiliary_files:/opt/ledaps -v /data_landsat:/data $(pwd):/
 ledaps/ledaps_ls8:v1 /results/shell_script /data/LC80210482015015LGN00
 ```
 
-where we have assumed that /data_landsat have the downloaded oli-tirs data of landsat 8 and in the working directory we want the results and have the shell_script
+where we have assumed that /data_landsat have the downloaded oli-tirs data of landsat 8 and in the working directory we have the shell_script and we want the results of ledaps
 
