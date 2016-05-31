@@ -20,7 +20,7 @@ $docker build -t ledaps/ledaps_ls8:v1 .
 
 ```
 
-you can combine the 4 files in a *hdf_fused* file. For example, if you have in the path "/auxiliary_files" the auxiliary files then:
+you can combine the 4 files in a *hdf_fused* file. For example, if you have in the path "/auxiliary_files" the auxiliary files then, after creating the /LADS/2015 directory:
 
 ```
 $docker run --rm -v /auxiliary_files:/opt/ledaps ledaps/ledaps_ls8:v1 combine_l8_aux_data \
@@ -36,5 +36,5 @@ $docker run --rm -v /auxiliary_files:/opt/ledaps -v /data_landsat:/data $(pwd):/
 ledaps/ledaps_ls8:v1 /results/shell_script /data/LC80210482015015LGN00
 ```
 
-where we have assumed that /data_landsat have the downloaded oli-tirs data of landsat 8 and in the working directory we want the results
+where we have assumed that /data_landsat have the downloaded oli-tirs data of landsat 8 and in the working directory we want the results and have the shell_script
 
