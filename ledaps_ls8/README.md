@@ -7,8 +7,8 @@ Auxiliary files: http://espa.cr.usgs.gov/downloads/auxiliaries/l8sr_auxiliary/l8
 
 We also have to download 4 files CMG and CMA MODIS products for both terra and aqua from the servers:
 
-	* ladssci.nascom.nasa.gov
-	* ladsweb.nascom.nasa.gov
+	* ftp://ladssci.nascom.nasa.gov/
+	* ftp://ladsweb.nascom.nasa.gov/allData/
 
 you will need a user and password for the first one.
 
