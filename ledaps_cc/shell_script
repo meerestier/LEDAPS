@@ -7,11 +7,13 @@
 	basename=$(echo $name|sed -n 's/\(L*.*\)/\1/;p')
 	dir=$destiny/$basename
 	year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+	mkdir -p $dir
 	#dir_ledaps=/opt/ledaps
 	cp $2/CMGDEM.hdf $dir
-	mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
-	mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
+	mkdir -p $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
+	mkdir -p $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 	cd $dir 
+	cp $1/* .
 	metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 	metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
 	export LEDAPS_AUX_DIR=$(pwd)
