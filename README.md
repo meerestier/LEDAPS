@@ -8,11 +8,11 @@ for a new approach go to folder ledaps_cc
 ```
 $docker build -t ledaps/ledaps:v1 .
 
-$docker run --rm -v <path to directory with ancillary data>:/opt/ledaps -v <path to local directory with data>:/data -v <path to directory for results>:/results ledaps/ledaps:v1 <path to ancillary data in docker> <path to source data in docker/L*.*.tar.bz> <path to destiny results in docker>
+$docker run --rm -v <path to directory with ancillary data>:/opt/ledaps -v <path to local directory with data>:/data -v <path to directory for results>:/results ledaps/ledaps:v1 /results/shell_script /data/<L*.*.tar.bz> /opt/ledaps
 
 #Example:
 
-$docker run --rm -v /Users/auxilliary_data:/opt/ledaps -v /Users/data:/data -v $(pwd):/results name_image /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
+$docker run --rm -v /Users/ledaps/ancillary_data/:/opt/ledaps -v /Users/data/:/data -v $(pwd):/results ledaps/ledaps:v1 /results/shell_script /data/LE70210481999203AGS00/ /opt/ledaps
 ```
 The directory *path to directory for results* will have the results
 
