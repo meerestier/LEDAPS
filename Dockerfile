@@ -70,12 +70,14 @@ RUN cd /usr/local/bin/ledapsSrc/src && make install
 RUN cd $BIN && chmod gou+x lndsrbm.ksh
 
 
-VOLUME ["/opt/ledaps", "/data", "/results"]
+#VOLUME ["/opt/ledaps", "/data", "/results"]
+
+RUN mkdir -p /opt/ledaps
 
 RUN cp $BIN/do_ledaps.csh /opt/ledaps/
 
-ADD shell_script /opt/shell_script
+#ADD shell_script /opt/shell_script
 
-WORKDIR /results
+#WORKDIR /results
 
-ENTRYPOINT ["/opt/shell_script"]
+#ENTRYPOINT ["/opt/shell_script"]
