@@ -10,6 +10,9 @@
 	mkdir -p $dir
 	#dir_ledaps=/opt/ledaps
 	cp $2/CMGDEM.hdf $dir
+	cp $2/L5_TM/gold.dat $dir
+	cp $2/L5_TM/gnew.dat $dir
+	cp $2/L5_TM/gold_2003.dat $dir
 	mkdir -p $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 	mkdir -p $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 	cd $dir
