@@ -17,7 +17,7 @@ ENV USERNAME=root
 RUN mkdir /usr/local/hdf4
 RUN chown $USERNAME /usr/local/hdf4
 
-RUN cd /usr/local/hdf4 && curl http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-4.2.11.tar.gz -O && tar -xzvf hdf-4.2.11.tar.gz
+RUN cd /usr/local/hdf4 && curl https://www.hdfgroup.org/ftp/HDF/previous/src/hdf-4.2.11.tar.gz -O && tar -xzvf hdf-4.2.11.tar.gz
 RUN cd /usr/local/hdf4/hdf-4.2.11 && ./configure && make check install && ldconfig
 
 RUN mkdir /usr/local/hdf-eos
@@ -61,20 +61,20 @@ RUN cd /usr/local/espa-common/ && make install && ldconfig
 #Surface reflectances...
 
 RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/
-#ENV LEDAPS_AUX_DIR="/opt/ledaps"
-ENV L8_AUX_DIR="/opt/ledaps"
-#ADD Makefile /usr/local/espa-surface/ledaps/ledapsSrc/src/lndsr/
-RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/c_version/src && make && make install
-ENV BIN="/usr/local/espa-tools/bin"
 
-RUN cp /usr/local/espa-surface/not-validated-prototype-l8_sr/c_version/scripts/do_l8_sr.py $BIN
 
-RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/landsat_aux/src && make && make install
-RUN cd /usr/local/espa-surface/not-validated-prototype-l8_sr/landsat_aux/scripts && make && make install
+ENV BIN="/usr/local/espa-tools/bin/"
+ENV PATH="/usr/local/espa-tools/bin/:$PATH"
 
-#ENV PATH="/usr/local/espa-tools/espa-surface-reflectance/l8_sr/bin/:$PATH"
+RUN cd /usr/local/espa-surface/not-validated-prototype-lasrc/c_version/src && make && make install
 
-ENV PATH="/usr/local/espa-tools/bin/"
+RUN cp /usr/local/espa-surface/not-validated-prototype-lasrc/c_version/scripts/do_lasrc.py $BIN
+RUN cp /usr/local/espa-surface/not-validated-prototype-lasrc/c_version/src/lasrc $BIN
+RUN cd /usr/local/espa-surface/not-validated-prototype-lasrc/landsat_aux/src && make #&& make install
+RUN cd /usr/local/espa-surface/not-validated-prototype-lasrc/landsat_aux/scripts && make #&& make install
+
+RUN cp /usr/local/espa-surface/not-validated-prototype-lasrc/landsat_aux/src/combine_l8_aux_data $BIN
+
 
 #Auxilliary files...
 
