@@ -75,6 +75,7 @@ RUN cd /usr/local/espa-surface/not-validated-prototype-lasrc/landsat_aux/scripts
 
 RUN cp /usr/local/espa-surface/not-validated-prototype-lasrc/landsat_aux/src/combine_l8_aux_data $BIN
 
+RUN cp /usr/local/espa-surface/not-validated-prototype-lasrc/landsat_aux/scripts/updatelads.py $BIN
 
 #Auxilliary files...
 
