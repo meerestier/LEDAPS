@@ -6,7 +6,7 @@
 	name=$(basename $1)
 	basename=$(echo $name|sed -n 's/\(L*.*\)/\1/;p')
 	dir=$destiny/$basename
-	year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+	year=$(echo $name|sed -nE 's/L[A-Z][4-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
 	mkdir -p $dir
 	#dir_ledaps=/opt/ledaps
 	cp $2/CMGDEM.hdf $dir
@@ -17,7 +17,7 @@
 	mkdir -p $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 	cd $dir 
 	cp $1/* .
-	metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+	metadata=$(ls $dir|grep -E ^L[A-Z]?[4-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 	metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
 	export LEDAPS_AUX_DIR=$(pwd)
 	cd $dir && $BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
