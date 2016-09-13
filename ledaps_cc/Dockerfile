@@ -1,4 +1,4 @@
-#docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <path to local directory with data>:/data -v <path to directory for results>:/results name_image <path to ancilliary data in docker> <path to source data in docker/L*.*.tar.bz> <path to destiny results in docker>
+#docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps -v <path to local directory with data>:/data -v <path to directory for results>:/results name_image <path to source data in docker/L*.*> <path to ancillary data in docker>
   
 #Example:
 #docker run -v /Users/ledaps_anc:/opt/ledaps -v /Users/data:/data -v /Users/results:/results name_image /opt/ledaps /data/LE70210492014004EDC00.tar.bz /results
@@ -17,13 +17,14 @@ ENV USERNAME=root
 RUN mkdir /usr/local/hdf4
 RUN chown $USERNAME /usr/local/hdf4
 
-RUN cd /usr/local/hdf4 && curl http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-4.2.11.tar.gz -O && tar -xzvf hdf-4.2.11.tar.gz
-RUN cd /usr/local/hdf4/hdf-4.2.11 && ./configure && make check install && ldconfig
+RUN cd /usr/local/hdf4 && curl http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-4.2.12.tar.gz -O && tar -xzvf hdf-4.2.12.tar.gz
+#RUN cd /usr/local/hdf4 && curl https://www.hdfgroup.org/ftp/HDF/previous/src/hdf-4.2.11.tar.gz -O && tar -xzvf hdf-4.2.11.tar.gz
+RUN cd /usr/local/hdf4/hdf-4.2.12 && ./configure && make check install && ldconfig
 
 RUN mkdir /usr/local/hdf-eos
 RUN chown $USERNAME /usr/local/hdf-eos
 RUN cd /usr/local/hdf-eos && curl ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00.tar.Z -O && tar -xzvf HDF-EOS2.19v1.00.tar.Z
-RUN cd /usr/local/hdf-eos/hdfeos && ./configure -enable-install-include CC=/usr/local/hdf4/hdf-4.2.11/hdf4/bin/h4cc && make check install && ldconfig
+RUN cd /usr/local/hdf-eos/hdfeos && ./configure -enable-install-include CC=/usr/local/hdf4/hdf-4.2.12/hdf4/bin/h4cc && make check install && ldconfig
 
 ENV HDFEOS_GCTPINC="/usr/local/hdf-eos/hdfeos/hdfeos2/include"
 ENV HDFEOS_GCTPLIB="/usr/local/hdf-eos/hdfeos/hdfeos2/lib"
@@ -31,8 +32,8 @@ ENV TIFFINC="/usr/include/x86_64-linux-gnu/"
 ENV TIFFLIB="/usr/lib/x86_64-linux-gnu/"
 ENV GEOTIFF_INC="/usr/include/geotiff/"
 ENV GEOTIFF_LIB="/usr/lib/"
-ENV HDFINC="/usr/local/hdf4/hdf-4.2.11/hdf4/include/"
-ENV HDFLIB="/usr/local/hdf4/hdf-4.2.11/hdf4/lib/"
+ENV HDFINC="/usr/local/hdf4/hdf-4.2.12/hdf4/include/"
+ENV HDFLIB="/usr/local/hdf4/hdf-4.2.12/hdf4/lib/"
 ENV HDFEOS_INC="/usr/local/hdf-eos/hdfeos/include/"
 ENV HDFEOS_LIB="/usr/local/hdf-eos/hdfeos/hdfeos2/lib"
 ENV JPEGINC="/usr/include/"
@@ -50,8 +51,8 @@ RUN mkdir -p /usr/local/espa-tools
 ENV PREFIX="/usr/local/espa-tools/"
 
 
-RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl http://espa.cr.usgs.gov/downloads/auxiliaries/land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
-ENV ESPA_LAND_MASS_POLYGON="$PREFIX/static_data/land_no_buf.ply"
+#RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl http://espa.cr.usgs.gov/downloads/auxiliaries/land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
+#ENV ESPA_LAND_MASS_POLYGON="$PREFIX/static_data/land_no_buf.ply"
 
 ENV ESPAINC="/usr/local/espa-tools/include"
 ENV ESPALIB="/usr/local/espa-tools/lib"
