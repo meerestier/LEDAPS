@@ -34,14 +34,14 @@ RUN mkdir /usr/local/hdf4
 RUN chown $USERNAME /usr/local/hdf4
 
 # This link might change, common error
-RUN cd /usr/local/hdf4 && curl http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-4.2.12.tar.gz -O && tar -xzvf hdf-4.2.12.tar.gz
+RUN cd /usr/local/hdf4 && curl -L http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-4.2.12.tar.gz -O && tar -xzvf hdf-4.2.12.tar.gz
 RUN cd /usr/local/hdf4/hdf-4.2.12 && ./configure && make check install && ldconfig
 
 RUN mkdir /usr/local/hdf-eos
 RUN chown $USERNAME /usr/local/hdf-eos
 
 # This link might change, common error
-RUN cd /usr/local/hdf-eos && curl ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00.tar.Z -O && tar -xzvf HDF-EOS2.19v1.00.tar.Z
+RUN cd /usr/local/hdf-eos && curl -L ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.19v1.00.tar.Z -O && tar -xzvf HDF-EOS2.19v1.00.tar.Z
 RUN cd /usr/local/hdf-eos/hdfeos && ./configure -enable-install-include CC=/usr/local/hdf4/hdf-4.2.12/hdf4/bin/h4cc && make check install && ldconfig
 
 ENV HDFEOS_GCTPINC="/usr/local/hdf-eos/hdfeos/hdfeos2/include"
@@ -68,7 +68,7 @@ RUN cd /usr/local/ && git clone https://github.com/USGS-EROS/espa-product-format
 RUN mkdir -p /usr/local/espa-tools
 ENV PREFIX="/usr/local/espa-tools/"
 
-RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl http://edclpdsftp.cr.usgs.gov/downloads/auxiliaries//land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
+RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl -L http://edclpdsftp.cr.usgs.gov/downloads/auxiliaries//land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
 ENV ESPA_LAND_MASS_POLYGON="$PREFIX/static_data/land_no_buf.ply"
 
 ENV ESPAINC="/usr/local/espa-tools/include"
