@@ -67,8 +67,10 @@ ENV JBIGLIB="/usr/lib/x86_64-linux-gnu/"
 RUN cd /usr/local/ && git clone https://github.com/USGS-EROS/espa-product-formatter.git espa-common
 RUN mkdir -p /usr/local/espa-tools
 ENV PREFIX="/usr/local/espa-tools/"
+# validate_xml code in the io_libs directory looks for the ESPA_SCHEMA environment variable first
+ENV ESPA_SCHEMA="/usr/local/espa-common/schema/espa_internal_metadata_v2_0.xsd"
 
-RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl -L http://edclpdsftp.cr.usgs.gov/downloads/auxiliaries//land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
+RUN cd /usr/local/espa-tools && mkdir static_data && cd static_data && curl -L http://edclpdsftp.cr.usgs.gov/downloads/auxiliaries/land_water_poly/land_no_buf.ply.gz -O && gunzip land_no_buf.ply.gz
 ENV ESPA_LAND_MASS_POLYGON="$PREFIX/static_data/land_no_buf.ply"
 
 ENV ESPAINC="/usr/local/espa-tools/include"
