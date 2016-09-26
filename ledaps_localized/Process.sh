@@ -20,7 +20,7 @@ docker build -t natriskchange/ledaps .
 # Name the Scene in the data folder
 echo "Please paste the Landsat Scene ID to process. (example: LT41760361990224XXX03)"
 read sceneID
-echo $sceneID
+echo $sceneID + ": Processing started..."
 
 docker run -ti --rm \
 -v /Volumes/DATA_DRIVE/NatRiskChange/Auxiliary/ledaps_aux.1978-2014:/opt/ledaps \

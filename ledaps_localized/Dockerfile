@@ -81,7 +81,8 @@ RUN cd /usr/local/espa-common/ && make install && ldconfig
 #Surface reflectances...
 
 RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/
-#ENV LEDAPS_AUX_DIR="/opt/ledaps"
+ENV LEDAPS_AUX_DIR="/opt/ledaps"
+
 ADD Makefile /usr/local/espa-surface/ledaps/ledapsSrc/src/lndsr/
 RUN cd /usr/local/espa-surface/ledaps/ledapsSrc/src && make && make install
 ENV BIN="/usr/local/espa-tools/bin"

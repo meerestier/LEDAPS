@@ -5,7 +5,7 @@
 
 
 #Ask for confirmation
-read -p "Process ready. Are you sure, you want to execute this on $2? It might take a while to process. (y/n) " -n 1 -r
+read -p "Long running process... Are you sure, you want to execute this on $1? It might take a while. (y/n) " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -32,11 +32,20 @@ then
 
 	# export LEDAPS_AUX_DIR=$(pwd)
 	cd $dir && $BIN/convert_lpgs_to_espa --mtl=$metadata #--xml=$metadataxml
+
+	# actual ledaps process
 	cd $dir && $BIN/do_ledaps.csh $metadataxml
+
+	# output in different formats (uncomment if not needed)
 	cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif
+	gdal lndsr.$basename.tif $basename.sr.geotif
 	cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf
+
+	# cleaning up
+	cd $dir
 	rm -r $dir/CMGDEM.hdf
 	rm -r $dir/EP_TOMS/
 	rm -r $dir/REANALYSIS/
+	rm !(*.geotiff)
 
 fi
