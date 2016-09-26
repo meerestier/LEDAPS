@@ -38,7 +38,7 @@ then
 
 	# output in different formats (uncomment if not needed)
 	cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif
-	cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf
+	# cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf
 	# TODO: gdal_translate lndsr.$basename.tif $basename.sr.geotiff
 
 	# cleaning up
