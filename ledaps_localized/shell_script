@@ -46,6 +46,6 @@ then
 	rm -r $dir/CMGDEM.hdf
 	rm -r $dir/EP_TOMS/
 	rm -r $dir/REANALYSIS/
-	rm !(*.geotiff)
+	find . ! -name '*.geotiff' -type f -exec rm -f {} + # keep only geotiff
 
 fi
