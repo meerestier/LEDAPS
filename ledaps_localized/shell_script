@@ -38,14 +38,14 @@ then
 
 	# output in different formats (uncomment if not needed)
 	cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif
-	gdal lndsr.$basename.tif $basename.sr.geotif
-	cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf
+	gdal lndsr.$basename.tif $basename.sr.geotiff
+	# cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf
 
 	# cleaning up
 	cd $dir
 	rm -r $dir/CMGDEM.hdf
 	rm -r $dir/EP_TOMS/
 	rm -r $dir/REANALYSIS/
-	find . ! -name '*.geotiff' -type f -exec rm -f {} + # keep only geotiff
+	find . ! -type f \( -name "*.geotiff" -o -name "*.tif" \) # keep only geotiff
 
 fi
