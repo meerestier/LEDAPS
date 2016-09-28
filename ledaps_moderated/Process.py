@@ -8,6 +8,7 @@
 
 
 import time
+import subprocess
 import os, sys
 
 #----------------------------------------------------------------------------------------------
@@ -18,7 +19,7 @@ dir = "~/Desktop"
 # Directory with Subdirectories of Scenes
 dir_input = "/Volumes/DATA_DRIVE/NatRiskChange/Data"
 dir_output = "/Volumes/DATA_DRIVE/NatRiskChange/Results"
-dir_auxiliary
+dir_auxiliary = "/Volumes/DATA_DRIVE/NatRiskChange/Auxiliary"
 
 #----------------------------------------------------------------------------------------------
 # helper functions
@@ -33,14 +34,20 @@ def my_dir():
 	return dir
 
 def dir_chooser():
-	global dir_input, dir_output
-	dir_input = raw_input('Enter path to source folder: ')
+	global dir_input, dir_output, dir_auxiliary
+	dir_input = raw_input('Enter path to source folder (scenes in subfolders): ')
 	dir_output = raw_input('Enter path to results folder: ') 
-	return str(folder)
+	dir_auxiliary = raw_input('Enter path to auxiliary folder: ') 
+	
+	return dir_input, dir_output, dir_auxiliary
 
 def get_immediate_subdirectories(dir):
     return [name for name in os.listdir(dir)
             if os.path.isdir(os.path.join(dir, name))]
+	
+def rename_parent():
+	dir_sub = "/Volumes/DATA_DRIVE/NatRiskChange/Tests"
+	# TODO
 
 def cleanup():
     # TODO implement
@@ -81,16 +88,18 @@ def create_folder():
 
 dir_chooser()
 
+print dir_auxiliary
+
+# get the subdirectories from input as a list
 scenes = get_immediate_subdirectories(dir_input)
-print scenes
 
-
-# same as above
 for scene in scenes:
     print "Scene ID: %s" % scene
     print "TODO: Subprocess"
-
-
+    command = "/bin/bash shell_test.sh"
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+    process.wait()
+    print process.returncode
 
 
 
