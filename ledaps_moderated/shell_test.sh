@@ -1,18 +1,23 @@
 #!/bin/bash
 
+# designate folder for operation (hard coded)
+cd /Volumes/DATA_DRIVE/NatRiskChange/Data
+destiny=/Volumes/DATA_DRIVE/NatRiskChange/Data
 
-# Name the Scene in the data folder
-echo "Please paste the Landsat Scene ID to process. (example: LT41760361990224XXX03)"
-read sceneID
+# designate subfolder to process
+read basename
+dir=$destiny/$basename
 
-## declare an array variable
-declare -a arr=($sceneID)
+# switch to subdirectory
+cd $dir/$basename.TIFF
+echo $(ls)
 
-## now loop through the above array
-for i in "${arr[@]}"
-do
-  # or do whatever with individual element of the array
-  echo  "Processing $i"
-done
+# extract scene ID of MTL file (cut at '_' )
+scene_id=$(ls -1 *_MTL.txt | cut -f 1 -d '_')
+echo $scene_id
 
-# You can access them using echo "${arr[0]}", "${arr[1]}" also
+# move subfolder to new destination
+mv $dir/$basename.TIFF/ $destiny/$scene_id/
+
+# remove empty original directory
+rm -rf $dir

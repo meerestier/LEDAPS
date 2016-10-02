@@ -5,11 +5,14 @@
 # Creator: Lars Schulz
 # URL: http://eco.systemic.de
 # Version: 0.0.1
+# Python Version: 3
 
+#!/usr/bin/python
 
 import time
 import subprocess
 import os, sys
+# import zipfile
 
 #----------------------------------------------------------------------------------------------
 # globals 
@@ -30,24 +33,39 @@ def my_dir():
 	global dir
 	# https://docs.python.org/2/library/os.path.html
 	dir = os.path.dirname( os.path.abspath(__file__) )
-	print dir
+	os.chdir(dir)
 	return dir
 
 def dir_chooser():
+	'''Asks for directories needed for the conversion.'''
 	global dir_input, dir_output, dir_auxiliary
 	dir_input = raw_input('Enter path to source folder (scenes in subfolders): ')
 	dir_output = raw_input('Enter path to results folder: ') 
 	dir_auxiliary = raw_input('Enter path to auxiliary folder: ') 
-	
 	return dir_input, dir_output, dir_auxiliary
 
 def get_immediate_subdirectories(dir):
     return [name for name in os.listdir(dir)
             if os.path.isdir(os.path.join(dir, name))]
 	
-def rename_parent():
-	dir_sub = "/Volumes/DATA_DRIVE/NatRiskChange/Tests"
-	# TODO
+def unzip(source_filename, dest_dir):
+    with zipfile.ZipFile(source_filename) as zf:
+        for member in zf.infolist():
+            # Path traversal defense copied from
+            # http://hg.python.org/cpython/file/tip/Lib/http/server.py#l789
+            words = member.filename.split('/')
+            path = dest_dir
+            for word in words[:-1]:
+                while True:
+                    drive, word = os.path.splitdrive(word)
+                    head, word = os.path.split(word)
+                    if not drive:
+                        break
+                if word in (os.curdir, os.pardir, ''):
+                    continue
+                path = os.path.join(path, word)
+            zf.extract(member, path)
+
 
 def cleanup():
     # TODO implement
@@ -86,9 +104,12 @@ def create_folder():
 #  Actions
 #----------------------------------------------------------------------------------------------
 
-dir_chooser()
+# Set dir
+dir = my_dir()
+print os.getcwd() #check working directory
 
-print dir_auxiliary
+# Choose directories for processing
+# dir_chooser()
 
 # get the subdirectories from input as a list
 scenes = get_immediate_subdirectories(dir_input)
@@ -98,29 +119,14 @@ for scene in scenes:
     print "TODO: Subprocess"
     command = "/bin/bash shell_test.sh"
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-    process.wait()
     print process.returncode
 
 
 
+# for scene in scenes:
+#     print "Scene ID: %s" % scene
+#     print "TODO: Subprocess"
+#     command = "/bin/bash shell_test.sh"
+#     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+#     print process.returncode
 
-# def dragged():
-#     # Do Action
-#     my_dir()
-#     read_text()
-#     create_folder()
-# 
-#     # Notify completion
-#     dz.finish("Folders created.")
-#  
-# def clicked():
-#     global dir
-#     # TODO: Set dir dynamically at finder selection
-# 
-#     # Use clipboard content for folder creation
-#     read_text_clip()
-#     create_folder()
-# 
-#     # Notify completion
-#     dz.finish("Folders created from clipboard.")
-#     dz.url(False)
