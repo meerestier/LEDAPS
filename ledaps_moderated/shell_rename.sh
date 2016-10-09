@@ -2,20 +2,25 @@
 
 # designate folder for operation (hard coded)
 cd /Volumes/DATA_DRIVE/NatRiskChange/Data
+
+# set variables
+dir_zip=/Volumes/DATA_DRIVE/NatRiskChange/Downloads/Downloads_esa_TM
 dir_source=/Volumes/DATA_DRIVE/NatRiskChange/Data
 destiny=/Volumes/DATA_DRIVE/NatRiskChange/Data_Prepared
 
 
-for path in *; do
+for path in *.ZIP; do
 	
-	# unzip 
-    [ -d "${path}" ] || continue # if not a directory, skip
-    dirname="$(basename "${path}")"
-    echo $dirname
+	# get name without .ZIP
+    dirname="$(basename "${path}" | cut -f 1 -d '.')"
 
-	# designate subfolder to process
+	# designate subfolder to process and create it
 	dir=$dir_source/$dirname
-	
+    mkdir $dir
+    
+    # unzip into subfolder
+    unzip $path -d $dir_source/$dirname
+    	
 	# switch to subdirectory
 	cd $dir/$dirname.TIFF
 	echo $(ls)
@@ -26,8 +31,12 @@ for path in *; do
 	
 	# move subfolder to new destination
 	mv $dir/$dirname.TIFF/ $destiny/$scene_id/
+
+	# go back to base folder
+	cd $dir_source
 	
 	# remove empty original directory
-	rm -rf $dir
-	rm -rf $dir.ZIP
+	rm -rf $dir_source/$dirname
+	#rm -rf $path
+	
 done

@@ -117,6 +117,7 @@ scenes = get_immediate_subdirectories(dir_input)
 for scene in scenes:
     print "Scene ID: %s" % scene
     print "TODO: Subprocess"
+
     command = "/bin/bash shell_test.sh"
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     print process.returncode

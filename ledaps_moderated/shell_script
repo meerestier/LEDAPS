@@ -39,12 +39,14 @@ then
 	# output in different formats (uncomment if not needed)
 	cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif
 	# cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf
-	# TODO: gdal_translate lndsr.$basename.tif $basename.sr.geotiff
+	# TODO: cd $dir && gdal_translate lndsr.$basename.tif $basename.sr.geotiff
 
 	# cleaning up
 	cd $dir
 	rm -r $dir/CMGDEM.hdf
 	rm -r $dir/EP_TOMS/
 	rm -r $dir/REANALYSIS/
-
+	
+	# all except
+	# find . -type f -not -name '*tif' -print0 | xargs -0 rm --
 fi
