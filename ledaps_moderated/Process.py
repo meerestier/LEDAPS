@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Python Script to moderate LEDAPS Docker Workflow
 # Name: Launch LEDAPS
 # Description: Describes what your action will do.
@@ -5,9 +7,6 @@
 # Creator: Lars Schulz
 # URL: http://eco.systemic.de
 # Version: 0.0.1
-# Python Version: 3
-
-#!/usr/bin/python
 
 import time
 import subprocess
@@ -76,9 +75,6 @@ def unzip(source_filename, dest_dir):
                 path = os.path.join(path, word)
             zf.extract(member, path)
 
-def bash_command(cmd):
-    subprocess.Popen(['/bin/bash', '-c', cmd])
-
 #----------------------------------------------------------------------------------------------
 #  Actions
 #----------------------------------------------------------------------------------------------
@@ -120,3 +116,4 @@ for scene in scenes:
 	command = "docker run -ti --rm -v %s:/opt/ledaps -v %s:/data -v %s:/results natriskchange/ledaps /data/%s /opt/ledaps" % (dir_auxiliary, dir_input, dir_output, scene)
 	process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
 	print process.communicate()
+	sys.exit() # exit after first loop
