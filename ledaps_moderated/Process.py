@@ -15,7 +15,7 @@ import os, sys
 # import zipfile
 
 #----------------------------------------------------------------------------------------------
-# globals 
+# globals
 #----------------------------------------------------------------------------------------------
 
 dir = "~/Desktop"
@@ -40,14 +40,24 @@ def dir_chooser():
 	'''Asks for directories needed for the conversion.'''
 	global dir_input, dir_output, dir_auxiliary
 	dir_input = raw_input('Enter path to source folder (scenes in subfolders): ')
-	dir_output = raw_input('Enter path to results folder: ') 
-	dir_auxiliary = raw_input('Enter path to auxiliary folder: ') 
+	dir_output = raw_input('Enter path to results folder: ')
+	dir_auxiliary = raw_input('Enter path to auxiliary folder: ')
 	return dir_input, dir_output, dir_auxiliary
 
 def get_immediate_subdirectories(dir):
     return [name for name in os.listdir(dir)
             if os.path.isdir(os.path.join(dir, name))]
-	
+
+def rename_dir():
+	for scene in scenes:
+		print "Scene ID: %s" % scene
+		print "TODO: Subprocess"
+		command = "/bin/bash shell_rename.sh"
+		process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+		print process.returncode
+
+
+
 def unzip(source_filename, dest_dir):
     with zipfile.ZipFile(source_filename) as zf:
         for member in zf.infolist():
@@ -66,39 +76,8 @@ def unzip(source_filename, dest_dir):
                 path = os.path.join(path, word)
             zf.extract(member, path)
 
-
-def cleanup():
-    # TODO implement
-    global data
-
-def read_text_clip():
-    global data
-    data = dz.read_clipboard().splitlines()
-
-def read_text():
-    global data, text
-    text = open(items[0], "r")
-    data = text.read().splitlines()
-    print "data: ", data
-    print "data 1: ", data[0]
-
-def create_folder():
-    global data
-    count = 1
-
-    for data in data:
-        # progress
-        print count
-        print len(data[0])
-
-        count += 1
-        dz.percent( count/len(data[0]) * 100)
-        current_name = dir + "/" + data
-        print current_name
-        if not os.path.exists(current_name):
-            os.makedirs(current_name)
-            
-	
+def bash_command(cmd):
+    subprocess.Popen(['/bin/bash', '-c', cmd])
 
 #----------------------------------------------------------------------------------------------
 #  Actions
@@ -111,23 +90,33 @@ print os.getcwd() #check working directory
 # Choose directories for processing
 # dir_chooser()
 
+#----------------------------------------------------------------------------------------------
+#  Reformat ESA Folders into USGS structure
+#----------------------------------------------------------------------------------------------
+
+# get the subdirectories from input as a list
+# scenes = get_immediate_subdirectories(dir_input)
+#
+# # Rename directories
+# for scene in scenes:
+# print "Scene ID: %s" % scene
+# print "TODO: Subprocess"
+#
+# command = "/bin/bash shell_rename.sh"
+# process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+# print process.returncode
+
+#----------------------------------------------------------------------------------------------
+#  Process every subdirectory
+#----------------------------------------------------------------------------------------------
+
 # get the subdirectories from input as a list
 scenes = get_immediate_subdirectories(dir_input)
 
+# Rename directories
 for scene in scenes:
-    print "Scene ID: %s" % scene
-    print "TODO: Subprocess"
+	print "Scene ID: %s" % scene
 
-    command = "/bin/bash shell_test.sh"
-    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-    print process.returncode
-
-
-
-# for scene in scenes:
-#     print "Scene ID: %s" % scene
-#     print "TODO: Subprocess"
-#     command = "/bin/bash shell_test.sh"
-#     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-#     print process.returncode
-
+	command = "docker run -ti --rm -v /Volumes/DATA_DRIVE/NatRiskChange/Auxiliary/ledaps_aux.1978-2014:/opt/ledaps -v /Volumes/DATA_DRIVE/NatRiskChange/Data:/data -v /Volumes/DATA_DRIVE/NatRiskChange/Results:/results natriskchange/ledaps /data/%s /opt/ledaps" % scene
+	process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+	print process.communicate()

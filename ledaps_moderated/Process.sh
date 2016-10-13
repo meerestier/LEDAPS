@@ -25,6 +25,7 @@ do
   docker run -ti --rm \
   -v /Volumes/DATA_DRIVE/NatRiskChange/Auxiliary/ledaps_aux.1978-2014:/opt/ledaps \
   -v /Volumes/DATA_DRIVE/NatRiskChange/Data:/data \
+  -v /Volumes/DATA_DRIVE/NatRiskChange/Backlog:/backlog \
   -v /Volumes/DATA_DRIVE/NatRiskChange/Results:/results \
   natriskchange/ledaps /data/$i /opt/ledaps
 done
