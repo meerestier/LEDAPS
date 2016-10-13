@@ -22,7 +22,7 @@ dir = "~/Desktop"
 # Directory with Subdirectories of Scenes
 dir_input = "/Volumes/DATA_DRIVE/NatRiskChange/Data"
 dir_output = "/Volumes/DATA_DRIVE/NatRiskChange/Results"
-dir_auxiliary = "/Volumes/DATA_DRIVE/NatRiskChange/Auxiliary"
+dir_auxiliary = "/Volumes/DATA_DRIVE/NatRiskChange/Auxiliary/ledaps_aux.1978-2014"
 
 #----------------------------------------------------------------------------------------------
 # helper functions
@@ -117,6 +117,6 @@ scenes = get_immediate_subdirectories(dir_input)
 for scene in scenes:
 	print "Scene ID: %s" % scene
 
-	command = "docker run -ti --rm -v /Volumes/DATA_DRIVE/NatRiskChange/Auxiliary/ledaps_aux.1978-2014:/opt/ledaps -v /Volumes/DATA_DRIVE/NatRiskChange/Data:/data -v /Volumes/DATA_DRIVE/NatRiskChange/Results:/results natriskchange/ledaps /data/%s /opt/ledaps" % scene
+	command = "docker run -ti --rm -v %s:/opt/ledaps -v %s:/data -v %s:/results natriskchange/ledaps /data/%s /opt/ledaps" % (dir_auxiliary, dir_input, dir_output, scene)
 	process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
 	print process.communicate()
