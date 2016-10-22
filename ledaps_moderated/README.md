@@ -14,12 +14,20 @@ command*
 Commands
 --------
 
- 
+Step 1: Build the container to run the process in. This is a custom docker
+container, that is
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-$docker build -t ledaps/ledaps:v1 .
+$docker build -t natriskchange/ledaps .
 
 #Execute the following command in the directory where you have the shell_script
+
+docker run -ti --rm \
+-v /Volumes/DATA_DRIVE/NatRiskChange/Auxiliary/ledaps_aux.1978-2014:/opt/ledaps \
+-v /Volumes/DATA_DRIVE/NatRiskChange/Data:/data \
+-v /Volumes/DATA_DRIVE/NatRiskChange/Results:/results \
+natriskchange/ledaps /data /opt/ledaps
+
 
 $docker run --rm -v <path to directory with ancillary data>:/opt/ledaps \
 -v <path to local directory with landsat data>:/data \

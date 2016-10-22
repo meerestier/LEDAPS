@@ -63,5 +63,5 @@ do
   # rm -fr !(lndsr*|*.xml)
 
   # Move folder
-  # cp -rp $currentScene /backlog && rm -r $currentScene;
+  # cp -rp $1/$currentScene /backlog && rm -r $1;
 done
