@@ -27,8 +27,6 @@ RUN apt-get update -y && \
 	subversion \
 	git \
 	python \
-	# shopt \
-	# extglob \
 	curl
 
 # Use bash instead of sh
