@@ -3,6 +3,8 @@
 #$1 is the path with the data unzip
 #$2 is the path to ancillary data mounted in the docker run command
 
+# use bash
+rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Name the Scene in the data folder, separate scenes with spaces
 echo $1
