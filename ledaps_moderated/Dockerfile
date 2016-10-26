@@ -29,6 +29,12 @@ RUN apt-get update -y && \
 	python \
 	curl
 
+# Use bash instead of sh
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# Enable the extended pattern matching
+RUN shopt -s extglob
+
 ENV USERNAME=root
 RUN mkdir /usr/local/hdf4
 RUN chown $USERNAME /usr/local/hdf4
@@ -64,7 +70,8 @@ ENV JBIGINC="/usr/include/"
 ENV JBIGLIB="/usr/lib/x86_64-linux-gnu/"
 
 
-RUN cd /usr/local/ && git clone https://github.com/USGS-EROS/espa-product-formatter.git espa-common
+# RUN cd /usr/local/ && git clone https://github.com/USGS-EROS/espa-product-formatter.git espa-common
+RUN cd /usr/local/ && git clone https://github.com/meerestier/espa-product-formatter.git espa-common
 RUN mkdir -p /usr/local/espa-tools
 ENV PREFIX="/usr/local/espa-tools/"
 # validate_xml code in the io_libs directory looks for the ESPA_SCHEMA environment variable first
@@ -80,7 +87,8 @@ RUN cd /usr/local/espa-common/ && make install && ldconfig
 
 #Surface reflectances...
 
-RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/
+# RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/
+RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/meerestier/espa-surface-reflectance.git espa-surface/
 ENV LEDAPS_AUX_DIR="/opt/ledaps"
 
 ADD Makefile /usr/local/espa-surface/ledaps/ledapsSrc/src/lndsr/

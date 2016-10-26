@@ -3,7 +3,6 @@
 #$1 is the path with the data unzip
 #$2 is the path to ancillary data mounted in the docker run command
 
-
 # Name the Scene in the data folder, separate scenes with spaces
 echo $1
 echo $2
@@ -57,7 +56,7 @@ do
   rm -r $dir/EP_TOMS/
   rm -r $dir/REANALYSIS/
 
-  ## Delete all file except all lndsr and xml files ##
+  # Delete all file except all lndsr and xml files ##
   # http://www.cyberciti.biz/faq/linux-bash-delete-all-files-in-directory-except-few/
   # shopt -s extglob
   # rm -fr !(lndsr*|*.xml)
