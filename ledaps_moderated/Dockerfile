@@ -27,7 +27,8 @@ RUN apt-get update -y && \
 	subversion \
 	git \
 	python \
-	shopt -s extglob \
+	# shopt \
+	# extglob \
 	curl
 
 ENV USERNAME=root
