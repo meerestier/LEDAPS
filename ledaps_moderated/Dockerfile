@@ -70,7 +70,7 @@ ENV JBIGINC="/usr/include/"
 ENV JBIGLIB="/usr/lib/x86_64-linux-gnu/"
 
 
-RUN cd /usr/local/ && git clone https://github.com/USGS-EROS/espa-product-formatter.git espa-common
+RUN cd /usr/local/ && git clone https://github.com/meerestier/espa-product-formatter.git espa-common
 RUN mkdir -p /usr/local/espa-tools
 ENV PREFIX="/usr/local/espa-tools/"
 # validate_xml code in the io_libs directory looks for the ESPA_SCHEMA environment variable first
