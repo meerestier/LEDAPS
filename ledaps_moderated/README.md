@@ -1,9 +1,9 @@
+LEDAPS
+======
+
 docker commands to preprocess landsat data, tm and etm+ that are based in
 ancilliary data (link changed recently):
 http://edclpdsftp.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
-
-LEDAPS
-======
 
 according to https://github.com/USGS-EROS/espa-surface-reflectance.git and
 images after year 2012 with metadata "resampling option: CC"
