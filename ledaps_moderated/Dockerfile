@@ -31,8 +31,11 @@ RUN apt-get update -y && \
 	# extglob \
 	curl
 
-# enable the extended pattern matching
-shopt -s extglob
+# Use bash instead of sh
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# Enable the extended pattern matching
+RUN shopt -s extglob
 
 ENV USERNAME=root
 RUN mkdir /usr/local/hdf4

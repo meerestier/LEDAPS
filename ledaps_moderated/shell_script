@@ -57,10 +57,10 @@ do
   rm -r $dir/EP_TOMS/
   rm -r $dir/REANALYSIS/
 
-  ## Delete all file except all lndsr and xml files ##
+  # Delete all file except all lndsr and xml files ##
   # http://www.cyberciti.biz/faq/linux-bash-delete-all-files-in-directory-except-few/
-  # shopt -s extglob
-  # rm -fr !(lndsr*|*.xml)
+  shopt -s extglob
+  rm -fr !(lndsr*|*.xml)
 
   # Move folder
   # cp -rp $1/$currentScene /backlog && rm -r $1;
