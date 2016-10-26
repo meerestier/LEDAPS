@@ -31,6 +31,9 @@ RUN apt-get update -y && \
 	# extglob \
 	curl
 
+# enable the extended pattern matching
+shopt -s extglob
+
 ENV USERNAME=root
 RUN mkdir /usr/local/hdf4
 RUN chown $USERNAME /usr/local/hdf4
