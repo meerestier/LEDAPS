@@ -1,6 +1,6 @@
 docker commands to preprocess landsat data, tm and etm+ that are based in
-ancilliary data:
-http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps\_auxiliary/ledaps\_aux.1978-2014.tar.gz
+ancilliary data (link changed recently):
+http://edclpdsftp.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 
 LEDAPS
 ======

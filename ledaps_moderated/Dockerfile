@@ -5,7 +5,7 @@
 
 #FROM ubuntu:14.04
 FROM geodata/gdal:1.11.2
-MAINTAINER Erick Palacios <epalacios@conabio.gob.mx>
+MAINTAINER Lars Schulz <lars.schulz@systemic.de>, courtesty of Erick Palacios <epalacios@conabio.gob.mx>
 USER root
 RUN apt-get update -y && \
 	apt-get install -y \
