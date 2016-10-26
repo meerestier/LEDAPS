@@ -70,6 +70,7 @@ ENV JBIGINC="/usr/include/"
 ENV JBIGLIB="/usr/lib/x86_64-linux-gnu/"
 
 
+# RUN cd /usr/local/ && git clone https://github.com/USGS-EROS/espa-product-formatter.git espa-common
 RUN cd /usr/local/ && git clone https://github.com/meerestier/espa-product-formatter.git espa-common
 RUN mkdir -p /usr/local/espa-tools
 ENV PREFIX="/usr/local/espa-tools/"
@@ -86,7 +87,8 @@ RUN cd /usr/local/espa-common/ && make install && ldconfig
 
 #Surface reflectances...
 
-RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/
+# RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/USGS-EROS/espa-surface-reflectance.git espa-surface/
+RUN cd /usr/local && mkdir espa-surface && git clone https://github.com/meerestier/espa-surface-reflectance.git espa-surface/
 ENV LEDAPS_AUX_DIR="/opt/ledaps"
 
 ADD Makefile /usr/local/espa-surface/ledaps/ledapsSrc/src/lndsr/
