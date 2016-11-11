@@ -182,7 +182,9 @@ Installation
 
 ##### Download from docker.com
 
-```*https://www.docker.com/products/overview*```
+```
+*https://www.docker.com/products/overview*
+```
 
 #### Windows
 
@@ -273,7 +275,7 @@ Sources
 
 <span style="font-variant:small-caps;">Schultz, M., Verbesselt, J., Avitabile, V., Souza, C. & Herold, M.</span>, 2015: Error Sources in Deforestation Detection Using BFAST Monitor on Landsat Time Series Across Three Tropical Sites. .
 
-#### 
+####
 
 [^1]: [*http://landsat.usgs.gov/Historical\_IGS.php*](http://landsat.usgs.gov/Historical_IGS.php)
 
