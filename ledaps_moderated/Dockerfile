@@ -33,7 +33,7 @@ RUN apt-get update -y && \
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Enable the extended pattern matching
-RUN shopt -s extglob
+RUN echo "shop -s extglob" >> /root/.bashrc
 
 ENV USERNAME=root
 RUN mkdir /usr/local/hdf4

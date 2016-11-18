@@ -191,7 +191,7 @@ Installation
 ##### Enable Hyper-V
 
 Hyper-V is the vitualisation environment for Windows 10. There is good
-documentation on how to enable this on your machine.
+documentation on the Internet on how to enable this on your machine.
 
 ##### Install Docker for Windows
 
@@ -215,7 +215,7 @@ cd \[PATH TO DIRECTORY\]
 ```
 1.  Get repository
 ```
-git clone https://github.com/meerestier/LEDAPS.git ledaps\_process
+git clone https://github.com/meerestier/LEDAPS.git ledaps_process --config core.autocrlf=input
 ```
 **Important:** The Readme.md file contains up-to-date details on how to
 use the container and gives examples on how to construct the commands.
@@ -245,22 +245,18 @@ Building a Docker Image makes it available, but we need to run it (comparable to
 Command on Linux Mac:
 ```
 docker run -ti --rm \
--v /Volumes/DATA\_DRIVE/NatRiskChange/Auxiliary/ledaps\_aux.1978-2014:/opt/ledaps \
--v /Volumes/DATA\_DRIVE/NatRiskChange/Data:/data \
--v /Volumes/DATA\_DRIVE/NatRiskChange/Results:/results \
+-v /Volumes/DATA_DRIVE/NatRiskChange/Auxiliary/ledaps\_aux.1978-2014:/opt/ledaps \
+-v /Volumes/DATA_DRIVE/NatRiskChange/Data:/data \
+-v /Volumes/DATA_DRIVE/NatRiskChange/Results:/results \
 natriskchange/ledaps /data /opt/ledaps
 ```
 
 Command on Windows:
 ```
-docker run -ti --rm \
--v F:/NatRiskChange/Auxiliary/ledaps\_aux.1978-2014:/opt/ledaps \
--v F:/NatRiskChange/Data:/data \
--v F:/NatRiskChange/Results:/results \
-natriskchange/ledaps /data /opt/ledaps
+docker run -ti --rm -v F:/NatRiskChange/Auxiliary/ledaps\_aux.1978-2014:/opt/ledaps -v F:/NatRiskChange/Data:/data -v F:/NatRiskChange/Results:/results natriskchange/ledaps /data /opt/ledaps
 ```
 
-**Explanation**: This command will run the container natriskchange/ledaps and link volumes with scenes (/data), auxiliary files (/ledaps\_aux.1978-2014) and a volume for the results (/results) When the container runs, it prompts for the scene names that need to be in the data directory. So this should have the form LT41760361990224XXX03, the standard naming convention for landsat source data (more info: [http://landsat.usgs.gov/naming\_conventions\_scene\_identifiers.php](http://landsat.usgs.gov/naming\_conventions\_scene\_identifiers.php))
+**Explanation**: This command will run the container natriskchange/ledaps and link volumes with scenes (/data), auxiliary files (/ledaps_aux.1978-2014) and a volume for the results (/results) When the container runs, it prompts for the scene names that need to be in the data directory. So this should have the form LT41760361990224XXX03, the standard naming convention for landsat source data (more info: [http://landsat.usgs.gov/naming_conventions_scene_identifiers.php](http://landsat.usgs.gov/naming_conventions_scene_identifiers.php))
 
 You can enter multiple names, separated by a space (see the scenelist.txt for an example) or just one scene to process. At the moment processing no more than 5 scenes at once is recommended until the script is further optimized.
 
